@@ -19,3 +19,9 @@
 
 # Go workspace file
 go.work
+
+# log files
+*.log
+
+# words txt file where mnemonic words are located
+words.txt

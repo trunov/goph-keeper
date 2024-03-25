@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Golang websocket example</h1>
+
+    <div class="content">
+      <input type="text" id="input" />
+      <button onclick="send()">send message</button>
+    </div>
+
+    <pre id="output"></pre>
+  </body>
+  <script>
+    var input = document.getElementById("input");
+    var output = document.getElementById("output");
+    var socket = new WebSocket("ws://localhost:3000/api/v1/ws");
+
+    socket.onopen = function () {
+      output.innerHTML += "Status: You CONNECTED" + "\n";
+    };
+
+    socket.onmessage = function (e) {
+      output.innerHTML += "Message: " + e.data + "\n";
+    };
+
+    const send = () => {
+      socket.send(input.value);
+      input.value = "";
+    };
+  </script>
+</html>
